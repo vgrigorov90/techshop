@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkte - TechShop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1>TechShop</h1>
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">Startseite</a>
+                <a href="produkte.html">Produkte</a>
+                <a href="angebote.html">Angebote</a>
+                <a href="impressum.html">Über uns</a>
+            </div>
+            <a href="warenkorb.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Kategorie Filter -->
+        <section class="filter-section">
+            <h2>Unsere Produkte</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Alle</button>
+                <button class="filter-btn" data-filter="laptops">Laptops</button>
+                <button class="filter-btn" data-filter="smartphones">Smartphones</button>
+                <button class="filter-btn" data-filter="zubehoer">Zubehör</button>
+            </div>
+        </section>
+
+        <!-- Produktübersicht -->
+        <section class="products-section">
+            <div class="product-grid" id="product-container">
+                <!-- Produkte werden hier per JS geladen -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechShop</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
