@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #2c3e50;
+    padding: 20px;
+    color: white;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.cart-icon {
+    font-size: 24px;
+    margin-right: 0;
+}
+
+main {
+    padding: 40px;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Hero */
+.hero {
+    background-color: #2c3e50;
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}
+
+/* Featured Products */
+.featured {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.featured h2 {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.product-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.product-card h3 {
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.price {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+/* Nachhaltigkeit */
+.sustainability {
+    background-color: #ecf0f1;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.sustainability h2 {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.sustain-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.sustain-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.sustain-card h3 {
+    margin-bottom: 10px;
+}
