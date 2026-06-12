@@ -1,3 +1,7 @@
+/* =========================================
+   GLOBAL — gilt für alle Seiten
+   ========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +13,10 @@ body {
     background-color: #f5f5f5;
     color: #333;
 }
+
+/* =========================================
+   HEADER & NAVIGATION — alle Seiten
+   ========================================= */
 
 header {
     background-color: #2c3e50;
@@ -37,6 +45,10 @@ nav a {
     margin-right: 0;
 }
 
+/* =========================================
+   MAIN & FOOTER — alle Seiten
+   ========================================= */
+
 main {
     padding: 40px;
 }
@@ -48,7 +60,26 @@ footer {
     padding: 20px;
 }
 
-/* Hero */
+/* =========================================
+   BUTTONS — alle Seiten
+   ========================================= */
+
+.btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}
+
+/* =========================================
+   index.html — HERO BEREICH
+   ========================================= */
+
 .hero {
     background-color: #2c3e50;
     color: white;
@@ -66,19 +97,10 @@ footer {
     margin-bottom: 30px;
 }
 
-.btn {
-    background-color: #e74c3c;
-    color: white;
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 5px;
-}
+/* =========================================
+   index.html — FEATURED PRODUCTS
+   ========================================= */
 
-.btn:hover {
-    background-color: #c0392b;
-}
-
-/* Featured Products */
 .featured {
     padding: 60px 40px;
     text-align: center;
@@ -88,6 +110,10 @@ footer {
     margin-bottom: 40px;
     font-size: 32px;
 }
+
+/* =========================================
+   PRODUKT KARTEN — index.html & produkte.html
+   ========================================= */
 
 .product-grid {
     display: flex;
@@ -120,7 +146,10 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Nachhaltigkeit */
+/* =========================================
+   index.html — NACHHALTIGKEIT
+   ========================================= */
+
 .sustainability {
     background-color: #ecf0f1;
     padding: 60px 40px;
@@ -149,7 +178,10 @@ footer {
     margin-bottom: 10px;
 }
 
-/* Filter Buttons */
+/* =========================================
+   produkte.html — FILTER BUTTONS
+   ========================================= */
+
 .filter-section {
     padding: 40px 40px 20px 40px;
     text-align: center;
@@ -185,7 +217,10 @@ footer {
     color: white;
 }
 
-/* Produkte Seite */
+/* =========================================
+   produkte.html — PRODUKTE ÜBERSICHT
+   ========================================= */
+
 .products-section {
     padding: 20px 40px 60px 40px;
 }
