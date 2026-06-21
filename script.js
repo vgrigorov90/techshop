@@ -179,7 +179,7 @@ const bundles = [
         specs: {
             Notebook: "ThinkPad E16 Gen 3 fuer Seminar, Hausarbeit und Office",
             Zubehoer: "MX Master 3S + Herschel Backpack",
-            Vorteil: "Mixed Joint Bundling mit 138 € Ersparnis",
+            Vorteil: "Set-Vorteil mit 138 € Ersparnis",
             Einsatz: "Studium"
         },
         featured: false
@@ -200,7 +200,7 @@ const bundles = [
             Smartphone: "6,9\" AMOLED, 200 MP Kamera, S Pen",
             Notebook: "Apple M4, bis 18 Std. Akku",
             Audio: "QN3 ANC, Bluetooth 5.3",
-            Vorteil: "Mixed Joint Bundling mit 348 € Ersparnis",
+            Vorteil: "Set-Vorteil mit 348 € Ersparnis",
             Einsatz: "Premium Alltag"
         },
         featured: false
@@ -220,7 +220,7 @@ const bundles = [
         specs: {
             Laptop: "Dell 16 fuer Office und Videocalls",
             Zubehoer: "ANC-Kopfhoerer, MX Master 3S und 20.000 mAh Powerbank",
-            Vorteil: "Mixed Joint Bundling mit 187 € Ersparnis",
+            Vorteil: "Set-Vorteil mit 187 € Ersparnis",
             Einsatz: "Homeoffice"
         },
         featured: false
@@ -253,9 +253,10 @@ function productCard(product) {
             <div class="product-body">
                 <div class="meta-row">
                     <span>${product.brand}</span>
-                    <span>${product.displayPrice}</span>
+                    <span>${product.category}</span>
                 </div>
                 <h3>${product.name}</h3>
+                <p class="price">${product.displayPrice}</p>
                 <ul class="highlight-list">
                     ${product.highlights.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}
                 </ul>
@@ -301,7 +302,7 @@ function offerCard(bundle) {
                 `).join("")}
             </div>
             <div class="bundle-body">
-                <p class="eyebrow">Mixed Joint Bundling</p>
+                <p class="eyebrow">Bundle-Vorteil</p>
                 <h3>${bundle.name}</h3>
                 <ul class="highlight-list">
                     ${bundle.highlights.map((item) => `<li>${item}</li>`).join("")}
@@ -455,12 +456,10 @@ function closeCart() {
 
 function openFilters() {
     document.querySelector("[data-filter-panel]")?.classList.add("open");
-    document.body.classList.add("drawer-open");
 }
 
 function closeFilters() {
     document.querySelector("[data-filter-panel]")?.classList.remove("open");
-    document.body.classList.remove("drawer-open");
 }
 
 function showToast(message) {
@@ -501,6 +500,7 @@ document.addEventListener("click", (event) => {
     if (event.target.closest("[data-cart-close]")) closeCart();
     if (event.target.closest("[data-filter-open]")) openFilters();
     if (event.target.closest("[data-filter-close]")) closeFilters();
+    if (event.target.closest("[data-search-submit]")) renderShop();
 });
 
 document.querySelectorAll("#searchInput, #sortSelect").forEach((input) => {
