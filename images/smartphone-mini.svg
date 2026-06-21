@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">SmartOne Mini Smartphone</title>
+  <desc id="desc">Kompaktes Smartphone mit farbigem Display.</desc>
+  <rect width="720" height="480" fill="#f2f5ff"/>
+  <rect x="285" y="64" width="150" height="350" rx="30" fill="#30384c"/>
+  <rect x="302" y="96" width="116" height="268" rx="14" fill="#f4b942"/>
+  <circle cx="360" cy="386" r="9" fill="#727d90"/>
+  <rect x="323" y="194" width="74" height="14" rx="7" fill="#ffffff" opacity="0.72"/>
+  <rect x="338" y="224" width="44" height="10" rx="5" fill="#ffffff" opacity="0.52"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Student Bundle</title>
+  <desc id="desc">Bundle aus Notebook, Maus und Tasche.</desc>
+  <rect width="720" height="480" fill="#eef4fb"/>
+  <rect x="90" y="118" width="340" height="210" rx="16" fill="#172033"/>
+  <rect x="112" y="142" width="296" height="152" rx="8" fill="#5bc0eb"/>
+  <rect x="70" y="328" width="380" height="40" rx="10" fill="#b7c3d0"/>
+  <rect x="480" y="155" width="130" height="190" rx="22" fill="#2f9e8f"/>
+  <path d="M500 155c0-34 22-58 45-58s45 24 45 58" fill="none" stroke="#172033" stroke-width="16"/>
+  <ellipse cx="545" cy="380" rx="54" ry="34" fill="#d94f45"/>
+  <path d="M545 350v60" stroke="#ffffff" stroke-width="5" opacity="0.6"/>
+</svg>

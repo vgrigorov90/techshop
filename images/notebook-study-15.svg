@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">StudyBook 15 Notebook</title>
+  <desc id="desc">Notebook fuer Studium mit geoeffnetem Bildschirm und Tastatur.</desc>
+  <rect width="720" height="480" fill="#f7f1e8"/>
+  <rect x="120" y="100" width="480" height="270" rx="16" fill="#1f2937"/>
+  <rect x="150" y="130" width="420" height="200" rx="8" fill="#7bd389"/>
+  <rect x="92" y="370" width="536" height="46" rx="12" fill="#d6dae2"/>
+  <rect x="170" y="386" width="380" height="8" rx="4" fill="#9aa5b5"/>
+  <path d="M260 210h200v28H260zM300 252h120v18H300z" fill="#ffffff" opacity="0.5"/>
+</svg>

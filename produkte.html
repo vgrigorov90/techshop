@@ -3,52 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produkte - TechShop</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="description" content="Shop mit echten Premium-Produkten, Suche, Filter und Sortierung.">
+    <title>Shop | TechShop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <header>
-        <h1>TechShop</h1>
-        <nav>
-            <div class="nav-links">
-                <a href="index.html">Startseite</a>
-                <a href="produkte.html">Produkte</a>
-                <a href="angebote.html">Angebote</a>
-                <a href="impressum.html">Über uns</a>
-            </div>
-            <a href="warenkorb.html" class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+<body data-page="shop">
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="TechShop Startseite">TechShop</a>
+        <button class="nav-toggle" type="button" aria-label="Menue oeffnen" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="index.html" data-nav="home">Start</a>
+            <a href="produkte.html" data-nav="shop">Shop</a>
+            <a href="produktdetail.html?id=macbook-air" data-nav="detail">Detail</a>
+            <a href="vergleich.html" data-nav="compare">Vergleich</a>
+            <a href="kontakt.html" data-nav="contact">Service</a>
         </nav>
+        <button class="cart-indicator" type="button" data-cart-open>
+            Warenkorb <span data-cart-count>0</span>
+        </button>
     </header>
 
     <main>
-
-        <!-- Kategorie Filter -->
-        <section class="filter-section">
-            <h2>Unsere Produkte</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Alle</button>
-                <button class="filter-btn" data-filter="laptops">Laptops</button>
-                <button class="filter-btn" data-filter="smartphones">Smartphones</button>
-                <button class="filter-btn" data-filter="zubehoer">Zubehör</button>
-            </div>
+        <section class="page-hero">
+            <p class="eyebrow">Produkte</p>
+            <h1>Technik ohne Umwege.</h1>
+            <p>Suchen, filtern, vergleichen.</p>
         </section>
 
-        <!-- Produktübersicht -->
-        <section class="products-section">
-            <div class="product-grid" id="product-container">
-                <!-- Produkte werden hier per JS geladen -->
-            </div>
-        </section>
+        <button class="filter-toggle" type="button" data-filter-open>Kategorien</button>
 
+        <section class="shop-layout">
+            <section class="shop-results">
+                <div class="result-bar">
+                    <h2>Alle Produkte</h2>
+                    <span data-result-count></span>
+                </div>
+                <div class="product-grid" data-product-grid></div>
+            </section>
+
+            <aside class="filters" aria-label="Kategorie und Filter" data-filter-panel>
+                <button class="icon-btn filter-close" type="button" data-filter-close>Schließen</button>
+                <h2>Kategorien</h2>
+                <div class="category-list" data-category-list>
+                    <button class="active" type="button" data-category="all">Alle</button>
+                    <button type="button" data-category="Laptops">Laptops</button>
+                    <button type="button" data-category="Tablets">Tablets</button>
+                    <button type="button" data-category="Smartphones">Smartphones</button>
+                    <button type="button" data-category="Kopfhörer">Kopfhörer</button>
+                    <button type="button" data-category="Smartwatches">Smartwatches</button>
+                    <button type="button" data-category="Zubehör">Zubehör</button>
+                </div>
+
+                <label for="searchInput">Suche</label>
+                <input id="searchInput" class="input" type="search" placeholder="MacBook, iPhone, iPad">
+
+                <label for="sortSelect">Sortierung</label>
+                <select id="sortSelect" class="input">
+                    <option value="featured">Empfohlen</option>
+                    <option value="price-asc">Preis aufsteigend</option>
+                    <option value="price-desc">Preis absteigend</option>
+                    <option value="name">Name A-Z</option>
+                </select>
+            </aside>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 TechShop</p>
+    <footer class="site-footer">
+        <p>TechShop</p>
+        <p>Produktdaten nach offiziellen Herstellerseiten.</p>
+        <p><a href="kontakt.html">Kontakt</a></p>
     </footer>
-    <script src="js/main.js"></script>
+
+    <dialog class="product-dialog" data-product-dialog>
+        <button class="icon-btn dialog-close" type="button" data-dialog-close>Schliessen</button>
+        <div data-dialog-content></div>
+    </dialog>
+
+    <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+        <div class="drawer-head">
+            <h2>Warenkorb</h2>
+            <button class="icon-btn" type="button" data-cart-close>Schliessen</button>
+        </div>
+        <div class="drawer-items" data-cart-items></div>
+        <div class="drawer-total">
+            <span>Summe</span>
+            <strong data-cart-total>0 €</strong>
+        </div>
+    </aside>
+    <div class="toast" data-toast></div>
+    <script src="script.js"></script>
 </body>
 </html>
