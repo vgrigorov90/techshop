@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shop mit echten Premium-Produkten, Suche, Filter und Sortierung.">
-    <title>Shop | TechShop</title>
+    <meta name="description" content="CampusTech Jena Shop mit Notebooks, Smartphones, Kopfhoerern und Zubehoer.">
+    <title>Shop | CampusTech Jena</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="shop">
     <header class="site-header">
-        <a class="brand" href="index.html" aria-label="TechShop Startseite">TechShop</a>
+        <a class="brand" href="index.html" aria-label="CampusTech Jena Startseite">CampusTech Jena</a>
         <button class="nav-toggle" type="button" aria-label="Menue oeffnen" aria-expanded="false">
             <span></span>
             <span></span>
@@ -17,7 +17,7 @@
         <nav class="site-nav" aria-label="Hauptnavigation">
             <a href="index.html" data-nav="home">Start</a>
             <a href="produkte.html" data-nav="shop">Shop</a>
-            <a href="produktdetail.html?id=macbook-air" data-nav="detail">Detail</a>
+            <a href="angebote.html" data-nav="offers">Angebote</a>
             <a href="vergleich.html" data-nav="compare">Vergleich</a>
             <a href="kontakt.html" data-nav="contact">Service</a>
         </nav>
@@ -29,8 +29,8 @@
     <main>
         <section class="page-hero">
             <p class="eyebrow">Produkte</p>
-            <h1>Technik ohne Umwege.</h1>
-            <p>Suchen, filtern, vergleichen.</p>
+            <h1>CampusTech Sortiment.</h1>
+            <p>Markenprodukte, lokale Abholung und faire Bundle-Logik.</p>
         </section>
 
         <button class="filter-toggle" type="button" data-filter-open>Kategorien</button>
@@ -50,15 +50,13 @@
                 <div class="category-list" data-category-list>
                     <button class="active" type="button" data-category="all">Alle</button>
                     <button type="button" data-category="Laptops">Laptops</button>
-                    <button type="button" data-category="Tablets">Tablets</button>
                     <button type="button" data-category="Smartphones">Smartphones</button>
                     <button type="button" data-category="Kopfhörer">Kopfhörer</button>
-                    <button type="button" data-category="Smartwatches">Smartwatches</button>
                     <button type="button" data-category="Zubehör">Zubehör</button>
                 </div>
 
                 <label for="searchInput">Suche</label>
-                <input id="searchInput" class="input" type="search" placeholder="MacBook, iPhone, iPad">
+                <input id="searchInput" class="input" type="search" placeholder="MacBook, Samsung, Sony">
 
                 <label for="sortSelect">Sortierung</label>
                 <select id="sortSelect" class="input">
@@ -72,15 +70,10 @@
     </main>
 
     <footer class="site-footer">
-        <p>TechShop</p>
+        <p>CampusTech Jena</p>
         <p>Produktdaten nach offiziellen Herstellerseiten.</p>
         <p><a href="kontakt.html">Kontakt</a></p>
     </footer>
-
-    <dialog class="product-dialog" data-product-dialog>
-        <button class="icon-btn dialog-close" type="button" data-dialog-close>Schliessen</button>
-        <div data-dialog-content></div>
-    </dialog>
 
     <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
         <div class="drawer-head">

@@ -6,62 +6,50 @@ const products = [
         category: "Laptops",
         price: 1199,
         displayPrice: "ab 1.199 €",
-        image: "https://www.apple.com/v/macbook-air/z/images/overview/hero/hero_static__c9sislzzicq6_large.png",
-        gallery: [
-            "https://www.apple.com/v/macbook-air/z/images/overview/hero/hero_static__c9sislzzicq6_large.png",
-            "https://www.apple.com/v/macbook-air/z/images/overview/design/design_hero_static__e56c1v71mr6u_large.png",
-            "https://www.apple.com/v/macbook-air/z/images/overview/performance/performance_hero_static__fmu2opq0522q_large.jpg"
-        ],
+        image: "images/products/macbook_air_13_1.webp",
+        gallery: ["images/products/macbook_air_13_1.webp", "images/products/macbook_air_13_2.webp", "images/products/macbook_air_3.webp"],
         highlights: ["Apple M4", "13,6\" Liquid Retina", "bis zu 18 Std. Akku"],
         specs: {
             Display: "13,6\" Liquid Retina",
             Prozessor: "Apple M4",
-            Speicher: "ab 256 GB SSD",
-            Einsatz: "leichtes Arbeiten"
+            Speicher: "ab 16 GB RAM / 256 GB SSD",
+            Einsatz: "Studium und mobiles Arbeiten"
         },
         featured: true
     },
     {
-        id: "thinkpad-x1-carbon",
-        name: "ThinkPad X1 Carbon Gen 13",
+        id: "thinkpad-e16-gen-3",
+        name: "ThinkPad E16 Gen 3",
         brand: "Lenovo",
         category: "Laptops",
-        price: 2059,
-        displayPrice: "ab 2.059 €",
-        image: "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzExOTYzfGltYWdlL3BuZ3xoYjYvaDk0LzE3Mjg4MjY2NDc3MDg2LnBuZ3w0OWUxMmI2MzAyYjQ3NTZkZWZiMmRjMTExOTk2ODU1Y2RjYmQwYWYzZGFkNGEwODQzY2UxMmQwNGRlOTllNmU2/lenovo-thinkpad-x1-carbon-gen-13-14-inch-intel-feature-1.png",
-        gallery: [
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzExOTYzfGltYWdlL3BuZ3xoYjYvaDk0LzE3Mjg4MjY2NDc3MDg2LnBuZ3w0OWUxMmI2MzAyYjQ3NTZkZWZiMmRjMTExOTk2ODU1Y2RjYmQwYWYzZGFkNGEwODQzY2UxMmQwNGRlOTllNmU2/lenovo-thinkpad-x1-carbon-gen-13-14-inch-intel-feature-1.png",
-            "https://p2-ofp.static.pub/ShareResource/na/products/thinkpad/400x300/lenovo-thinkpad-x1-carbon-gen-13-14-inch-intel-feature-2.png",
-            "https://p2-ofp.static.pub/ShareResource/na/products/thinkpad/400x300/lenovo-thinkpad-x1-carbon-gen-13-14-inch-intel-feature-3.png"
-        ],
-        highlights: ["14\" OLED optional", "Intel Core Ultra", "unter 1 kg"],
+        price: 999,
+        displayPrice: "999 €",
+        image: "images/products/lenovo-thinkpad-e16-gen-3_1.webp",
+        gallery: ["images/products/lenovo-thinkpad-e16-gen-3_1.webp", "images/products/lenovo-thinkpad-e16-gen-3_2.webp", "images/products/lenovo-thinkpad-e16-gen-3_3.webp"],
+        highlights: ["16\" WUXGA", "Intel Core Ultra", "Business-Tastatur"],
         specs: {
-            Display: "14\" OLED optional",
-            Prozessor: "Intel Core Ultra",
-            Gewicht: "unter 1 kg",
-            Einsatz: "Business"
+            Display: "16\" WUXGA IPS",
+            Prozessor: "Intel Core Ultra / Core 5",
+            Speicher: "bis 64 GB RAM moeglich",
+            Einsatz: "Office, Projektarbeit, Verwaltung"
         },
         featured: true
     },
     {
-        id: "dell-xps-13",
-        name: "XPS 13",
+        id: "dell-16-intel-5",
+        name: "Dell 16 Intel 5",
         brand: "Dell",
         category: "Laptops",
-        price: 1299,
-        displayPrice: "ab 1.299 €",
-        image: "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/category/laptop/xps/fy25-family-launch/xps-13-9345-laptop-sl-gallery-1.psd?fmt=png-alpha&wid=1200&hei=900",
-        gallery: [
-            "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/category/laptop/xps/fy25-family-launch/xps-13-9345-laptop-sl-gallery-1.psd?fmt=png-alpha&wid=1200&hei=900",
-            "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/category/laptop/xps/fy25-family-launch/xps-13-9345-laptop-sl-gallery-2.psd?fmt=png-alpha&wid=1200&hei=900",
-            "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/category/laptop/xps/fy25-family-launch/xps-13-9345-laptop-sl-gallery-3.psd?fmt=png-alpha&wid=1200&hei=900"
-        ],
-        highlights: ["13,4\" Display", "kompaktes Gehäuse", "Premium-Aluminium"],
+        price: 899,
+        displayPrice: "899 €",
+        image: "images/products/dell-16-intel-5_1.webp",
+        gallery: ["images/products/dell-16-intel-5_1.webp", "images/products/dell-16-intel-5_2.webp", "images/products/dell-16-intel-5_3.webp"],
+        highlights: ["16\" Display", "Intel Core 5", "512 GB SSD"],
         specs: {
-            Display: "13,4\"",
-            Prozessor: "Intel Core Ultra / Snapdragon X",
-            Material: "Aluminium",
-            Einsatz: "mobiles Arbeiten"
+            Display: "16\" Full-HD+",
+            Prozessor: "Intel Core 5",
+            Speicher: "512 GB SSD",
+            Einsatz: "Homeoffice und Alltag"
         },
         featured: false
     },
@@ -70,164 +58,185 @@ const products = [
         name: "Galaxy S25 Ultra",
         brand: "Samsung",
         category: "Smartphones",
-        price: 1449,
-        displayPrice: "ab 1.449 €",
-        image: "https://images.samsung.com/is/image/samsung/p6pim/de/sm-s938bzkgeub/gallery/de-galaxy-s25-ultra-s938-sm-s938bzkgeub-thumb-544703289",
-        gallery: [
-            "https://images.samsung.com/is/image/samsung/p6pim/de/sm-s938bzkgeub/gallery/de-galaxy-s25-ultra-s938-sm-s938bzkgeub-thumb-544703289",
-            "https://images.samsung.com/is/image/samsung/assets/de/smartphones/galaxy-s25-ultra/buy/S25U_Product_KV_PC.jpg",
-            "https://images.samsung.com/is/image/samsung/p6pim/de/sm-s938bzkgeub/gallery/de-galaxy-s25-ultra-s938-sm-s938bzkgeub-544703288"
-        ],
-        highlights: ["Galaxy AI", "200 MP Kamera", "S Pen"],
+        price: 1399,
+        displayPrice: "1.399 €",
+        image: "images/products/samsung-galaxy-s25-ultra_1.webp",
+        gallery: ["images/products/samsung-galaxy-s25-ultra_1.webp", "images/products/samsung-galaxy-s25-ultra_2.webp", "images/products/samsung-galaxy-s25-ultra_3.webp"],
+        highlights: ["6,9\" AMOLED 2X", "200 MP Kamera", "S Pen"],
         specs: {
             Display: "6,9\" Dynamic AMOLED 2X",
             Prozessor: "Snapdragon 8 Elite for Galaxy",
-            Kamera: "200 MP Weitwinkel",
-            Einsatz: "Foto und Produktivität"
+            Kamera: "200 MP + 50 MP Ultraweitwinkel",
+            Einsatz: "Foto und Produktivitaet"
         },
         featured: true
     },
     {
-        id: "xiaomi-15-ultra",
-        name: "Xiaomi 15 Ultra",
+        id: "redmi-note-14",
+        name: "Redmi Note 14",
         brand: "Xiaomi",
         category: "Smartphones",
-        price: 1499,
-        displayPrice: "ab 1.499,90 €",
-        image: "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/section01-phone.png",
-        gallery: [
-            "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/section01-phone.png",
-            "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/section03-phone.png",
-            "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/section08-phone.png"
-        ],
-        highlights: ["Leica Kamera", "Snapdragon 8 Elite", "90 W HyperCharge"],
+        price: 199,
+        displayPrice: "ab 199 €",
+        image: "images/products/xiaomi-redmi-note-14_1.webp",
+        gallery: ["images/products/xiaomi-redmi-note-14_1.webp", "images/products/xiaomi-redmi-note-14_2.webp", "images/products/xiaomi-redmi-note-14_3.webp"],
+        highlights: ["6,67\" AMOLED", "120 Hz", "5.500 mAh Akku"],
         specs: {
-            Display: "6,73\" AMOLED",
-            Prozessor: "Snapdragon 8 Elite",
-            Kamera: "Leica Quad-Kamera",
-            Einsatz: "mobile Fotografie"
+            Display: "6,67\" AMOLED, 120 Hz",
+            Prozessor: "MediaTek Helio G99-Ultra",
+            Kamera: "108 MP Hauptkamera",
+            Einsatz: "Budget-Smartphone fuer Alltag"
         },
         featured: true
     },
     {
-        id: "ipad-pro",
-        name: "iPad Pro 11\"",
-        brand: "Apple",
-        category: "Tablets",
-        price: 1199,
-        displayPrice: "ab 1.199 €",
-        image: "https://www.apple.com/newsroom/images/2025/10/apple-introduces-the-powerful-new-ipad-pro-with-the-m5-chip/article/Apple-iPad-Pro-color-lineups-251015_inline.jpg.large.jpg",
-        gallery: [
-            "https://www.apple.com/newsroom/images/2025/10/apple-introduces-the-powerful-new-ipad-pro-with-the-m5-chip/article/Apple-iPad-Pro-color-lineups-251015_inline.jpg.large.jpg",
-            "https://www.apple.com/newsroom/images/2025/10/apple-introduces-the-powerful-new-ipad-pro-with-the-m5-chip/article/Apple-iPad-Pro-Magic-Keyboard-01-251015_big.jpg.large.jpg",
-            "https://www.apple.com/newsroom/images/2025/10/apple-introduces-the-powerful-new-ipad-pro-with-the-m5-chip/article/Apple-iPad-Pro-thin-design-251015_inline.jpg.large.jpg"
-        ],
-        highlights: ["Apple M5", "Ultra Retina XDR", "sehr dünn"],
-        specs: {
-            Display: "11\" Ultra Retina XDR",
-            Prozessor: "Apple M5",
-            Zubehör: "Apple Pencil Pro",
-            Einsatz: "Kreativarbeit"
-        },
-        featured: false
-    },
-    {
-        id: "galaxy-tab-s10-ultra",
-        name: "Galaxy Tab S10 Ultra",
-        brand: "Samsung",
-        category: "Tablets",
-        price: 1339,
-        displayPrice: "ab 1.339 €",
-        image: "https://images.samsung.com/is/image/samsung/p6pim/de/sm-x926bzaeeub/gallery/de-galaxy-tab-s10-ultra-5g-x926-sm-x926bzaeeub-thumb-543691583",
-        gallery: [
-            "https://images.samsung.com/is/image/samsung/p6pim/de/sm-x926bzaeeub/gallery/de-galaxy-tab-s10-ultra-5g-x926-sm-x926bzaeeub-thumb-543691583",
-            "https://images.samsung.com/is/image/samsung/p6pim/de/sm-x926bzaeeub/gallery/de-galaxy-tab-s10-ultra-5g-x926-sm-x926bzaeeub-543691582",
-            "https://images.samsung.com/is/image/samsung/p6pim/de/sm-x926bzaeeub/gallery/de-galaxy-tab-s10-ultra-5g-x926-sm-x926bzaeeub-543691586"
-        ],
-        highlights: ["14,6\" AMOLED", "S Pen", "Galaxy AI"],
-        specs: {
-            Display: "14,6\" Dynamic AMOLED 2X",
-            Stift: "S Pen enthalten",
-            Schutz: "IP68",
-            Einsatz: "große Arbeitsfläche"
-        },
-        featured: false
-    },
-    {
-        id: "sony-wh-1000xm5",
-        name: "WH-1000XM5",
+        id: "sony-wh-1000xm6",
+        name: "WH-1000XM6",
         brand: "Sony",
         category: "Kopfhörer",
-        price: 299,
-        displayPrice: "299 €",
-        image: "https://www.sony.de/image/5d02da5df552836db894cead8a68f5f3?fmt=png-alpha&wid=1200",
-        gallery: [
-            "https://www.sony.de/image/5d02da5df552836db894cead8a68f5f3?fmt=png-alpha&wid=1200",
-            "https://www.sony.de/image/3d0710e1438cfa30eadf9b6b9ba44f2b?fmt=png-alpha&wid=1200",
-            "https://www.sony.de/image/07b9c574c6d6a63f19f91a9ec6e790bd?fmt=png-alpha&wid=1200"
-        ],
-        highlights: ["Noise Cancelling", "Bluetooth", "bis zu 30 Std."],
+        price: 449,
+        displayPrice: "449 €",
+        image: "images/products/sony-wh-1000xm6_1.webp",
+        gallery: ["images/products/sony-wh-1000xm6_1.webp", "images/products/sony-wh-1000xm6_2.webp", "images/products/sony-wh-1000xm6_3.webp"],
+        highlights: ["QN3 Noise Cancelling", "Bluetooth 5.3", "bis zu 30 Std."],
         specs: {
             Typ: "Over-Ear",
             Akku: "bis zu 30 Std.",
-            Verbindung: "Bluetooth",
+            Verbindung: "Bluetooth 5.3, LDAC",
             Einsatz: "Reisen und Fokus"
         },
         featured: true
     },
     {
-        id: "apple-watch-series-10",
-        name: "Apple Watch Series 10",
-        brand: "Apple",
-        category: "Smartwatches",
-        price: 449,
-        displayPrice: "ab 449 €",
-        image: "https://www.apple.com/v/apple-watch-series-10/c/images/overview/hero/hero_startframe__dzaznwurvilm_large.jpg",
-        gallery: [
-            "https://www.apple.com/v/apple-watch-series-10/c/images/overview/hero/hero_startframe__dzaznwurvilm_large.jpg",
-            "https://www.apple.com/v/apple-watch-series-10/c/images/overview/design/design_titanium__ghs9byw6j2i2_large.jpg",
-            "https://www.apple.com/v/apple-watch-series-10/c/images/overview/health/health__db0y5flc7o2u_large.jpg"
-        ],
-        highlights: ["Always-On Retina", "flaches Gehäuse", "Gesundheitsfunktionen"],
+        id: "logitech-mx-master-3s",
+        name: "MX Master 3S",
+        brand: "Logitech",
+        category: "Zubehör",
+        price: 99,
+        displayPrice: "99 €",
+        image: "images/products/logitech-mx-master-3s_1.webp",
+        gallery: ["images/products/logitech-mx-master-3s_1.webp", "images/products/logitech-mx-master-3s_2.webp", "images/products/logitech-mx-master-3s_3.webp"],
+        highlights: ["8K-DPI-Sensor", "leise Klicks", "USB-C Schnellladen"],
         specs: {
-            Display: "Always-On Retina",
-            Größen: "42 mm oder 46 mm",
-            Material: "Aluminium oder Titan",
-            Einsatz: "Alltag und Gesundheit"
+            Typ: "kabellose Maus",
+            Sensor: "Darkfield, bis 8.000 DPI",
+            Verbindung: "Bluetooth / Logi Bolt",
+            Einsatz: "Produktives Arbeiten"
         },
         featured: false
     },
     {
-        id: "samsung-t7-shield",
-        name: "Portable SSD T7 Shield",
-        brand: "Samsung",
+        id: "herschel-retreat-backpack",
+        name: "Retreat Backpack",
+        brand: "Herschel",
         category: "Zubehör",
-        price: 109,
-        displayPrice: "ab 109 €",
-        image: "https://images.samsung.com/is/image/samsung/p6pim/de/mu-pe1t0s-eu/gallery/de-portable-ssd-t7-shield-mu-pe1t0s-eu-531004884",
-        gallery: [
-            "https://images.samsung.com/is/image/samsung/p6pim/de/mu-pe1t0s-eu/gallery/de-portable-ssd-t7-shield-mu-pe1t0s-eu-531004884",
-            "https://images.samsung.com/is/image/samsung/p6pim/de/mu-pe1t0s-eu/gallery/de-portable-ssd-t7-shield-mu-pe1t0s-eu-531004885",
-            "https://images.samsung.com/is/image/samsung/p6pim/de/mu-pe1t0s-eu/gallery/de-portable-ssd-t7-shield-mu-pe1t0s-eu-531004887"
-        ],
-        highlights: ["USB 3.2 Gen 2", "robustes Gehäuse", "bis 1.050 MB/s"],
+        price: 89,
+        displayPrice: "89 €",
+        image: "images/products/herschel-retreat-youth_1.webp",
+        gallery: ["images/products/herschel-retreat-youth_1.webp", "images/products/herschel-retreat-youth_2.webp", "images/products/herschel-retreat-youth_3.webp"],
+        highlights: ["Laptopfach", "Campus-Format", "robustes Material"],
         specs: {
-            Typ: "Portable SSD",
+            Typ: "Rucksack",
+            Volumen: "kompakt fuer Campus und Alltag",
+            Fach: "Laptopfach",
+            Einsatz: "Transport und Uni-Alltag"
+        },
+        featured: false
+    },
+    {
+        id: "anker-prime-powerbank-20000",
+        name: "Prime Powerbank 20000",
+        brand: "Anker",
+        category: "Zubehör",
+        price: 89,
+        displayPrice: "89 €",
+        image: "images/products/anker-735-prime-power-bank-20000_1.webp",
+        gallery: ["images/products/anker-735-prime-power-bank-20000_1.webp", "images/products/anker-735-prime-power-bank-20000_2.webp", "images/products/anker-735-prime-power-bank-20000_3.webp"],
+        highlights: ["20.000 mAh", "USB-C", "fuer lange Arbeitstage"],
+        specs: {
+            Typ: "Powerbank",
+            Kapazitaet: "20.000 mAh",
             Anschluss: "USB-C",
-            Tempo: "bis 1.050 MB/s",
-            Einsatz: "Backup und Medien"
+            Einsatz: "Mobiles Laden"
         },
         featured: false
     }
 ];
 
-let cart = JSON.parse(localStorage.getItem("techshop-warenkorb")) || [];
+const bundles = [
+    {
+        id: "student-bundle",
+        name: "Student Bundle",
+        brand: "CampusTech",
+        category: "Bundle",
+        price: 1049,
+        displayPrice: "1.049 €",
+        oldPrice: "1.187 €",
+        saving: "138 € sparen",
+        image: "images/products/lenovo-thinkpad-e16-gen-3_2.webp",
+        gallery: ["images/products/lenovo-thinkpad-e16-gen-3_2.webp", "images/products/logitech-mx-master-3s_1.webp", "images/products/herschel-retreat-youth_1.webp"],
+        highlights: ["Lenovo ThinkPad E16 Gen 3", "Logitech MX Master 3S", "Herschel Retreat Backpack"],
+        specs: {
+            Notebook: "ThinkPad E16 Gen 3 fuer Seminar, Hausarbeit und Office",
+            Zubehoer: "MX Master 3S + Herschel Backpack",
+            Vorteil: "Mixed Joint Bundling mit 138 € Ersparnis",
+            Einsatz: "Studium"
+        },
+        featured: false
+    },
+    {
+        id: "premium-bundle",
+        name: "Premium Bundle",
+        brand: "CampusTech",
+        category: "Bundle",
+        price: 2699,
+        displayPrice: "2.699 €",
+        oldPrice: "3.047 €",
+        saving: "348 € sparen",
+        image: "images/products/samsung-galaxy-s25-ultra_2.webp",
+        gallery: ["images/products/samsung-galaxy-s25-ultra_2.webp", "images/products/macbook_air_13_1.webp", "images/products/sony-wh-1000xm6_2.webp"],
+        highlights: ["Galaxy S25 Ultra", "MacBook Air 13\" M4", "Sony WH-1000XM6"],
+        specs: {
+            Smartphone: "6,9\" AMOLED, 200 MP Kamera, S Pen",
+            Notebook: "Apple M4, bis 18 Std. Akku",
+            Audio: "QN3 ANC, Bluetooth 5.3",
+            Vorteil: "Mixed Joint Bundling mit 348 € Ersparnis",
+            Einsatz: "Premium Alltag"
+        },
+        featured: false
+    },
+    {
+        id: "homeoffice-bundle",
+        name: "Homeoffice Bundle",
+        brand: "CampusTech",
+        category: "Bundle",
+        price: 1349,
+        displayPrice: "1.349 €",
+        oldPrice: "1.536 €",
+        saving: "187 € sparen",
+        image: "images/products/dell-16-intel-5_1.webp",
+        gallery: ["images/products/dell-16-intel-5_1.webp", "images/products/sony-wh-1000xm6_1.webp", "images/products/logitech-mx-master-3s_2.webp", "images/products/anker-735-prime-power-bank-20000_1.webp"],
+        highlights: ["Dell 16", "Sony WH-1000XM6", "Logitech MX Master 3S", "Anker Prime Powerbank 20000"],
+        specs: {
+            Laptop: "Dell 16 fuer Office und Videocalls",
+            Zubehoer: "ANC-Kopfhoerer, MX Master 3S und 20.000 mAh Powerbank",
+            Vorteil: "Mixed Joint Bundling mit 187 € Ersparnis",
+            Einsatz: "Homeoffice"
+        },
+        featured: false
+    }
+];
+
+const catalog = [...products, ...bundles];
+
+let cart = (JSON.parse(localStorage.getItem("techshop-warenkorb")) || [])
+    .filter((entry) => catalog.some((product) => product.id === entry.id));
 let activeCategory = "all";
 
 const euro = (value) => `${value.toLocaleString("de-DE")} €`;
 
 function getProduct(id) {
-    return products.find((product) => product.id === id) || products[0];
+    return catalog.find((product) => product.id === id) || products[0];
 }
 
 function setActiveNav() {
@@ -251,24 +260,12 @@ function productCard(product) {
                     ${product.highlights.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}
                 </ul>
                 <div class="product-actions">
-                    <a class="btn btn-light" href="produktdetail.html?id=${product.id}">Mehr erfahren</a>
+                    <a class="btn btn-light" href="produktdetail.html?id=${product.id}">Details</a>
                     <button class="btn btn-dark" type="button" data-add="${product.id}">In den Warenkorb</button>
-                    <button class="text-link" type="button" data-modal="${product.id}">Kurzansicht</button>
                 </div>
             </div>
         </article>
     `;
-}
-
-function renderFeatured() {
-    const target = document.querySelector("[data-featured-products]");
-    if (!target) return;
-
-    target.innerHTML = products
-        .filter((product) => product.featured)
-        .slice(0, 3)
-        .map(productCard)
-        .join("");
 }
 
 function renderShop() {
@@ -294,6 +291,40 @@ function renderShop() {
     document.querySelector("[data-result-count]").textContent = `${visible.length} Produkte`;
 }
 
+function offerCard(bundle) {
+    return `
+        <article class="bundle-card">
+            <div class="offer-badge">${bundle.saving}</div>
+            <div class="bundle-images">
+                ${bundle.gallery.map((image, index) => `
+                    <img src="${image}" alt="${bundle.name} Produkt ${index + 1}" width="260" height="220" loading="lazy">
+                `).join("")}
+            </div>
+            <div class="bundle-body">
+                <p class="eyebrow">Mixed Joint Bundling</p>
+                <h3>${bundle.name}</h3>
+                <ul class="highlight-list">
+                    ${bundle.highlights.map((item) => `<li>${item}</li>`).join("")}
+                </ul>
+                <div class="bundle-prices">
+                    <span>Regular price <strong>${bundle.oldPrice}</strong></span>
+                    <span>Bundle price <strong>${bundle.displayPrice}</strong></span>
+                </div>
+                <div class="product-actions">
+                    <a class="btn btn-dark" href="produktdetail.html?id=${bundle.id}">Zum Bundle</a>
+                    <button class="btn btn-light" type="button" data-add="${bundle.id}">In den Warenkorb</button>
+                </div>
+            </div>
+        </article>
+    `;
+}
+
+function renderOffers() {
+    document.querySelectorAll("[data-offer-grid], [data-home-bundles]").forEach((grid) => {
+        grid.innerHTML = bundles.map(offerCard).join("");
+    });
+}
+
 function renderDetail() {
     const target = document.querySelector("[data-product-detail]");
     if (!target) return;
@@ -315,7 +346,9 @@ function renderDetail() {
         <div class="detail-info">
             <p class="eyebrow">${product.brand}</p>
             <h1>${product.name}</h1>
+            ${product.oldPrice ? `<p class="old-price">${product.oldPrice}</p>` : ""}
             <p class="price">${product.displayPrice}</p>
+            ${product.saving ? `<p class="saving">${product.saving}</p>` : ""}
             <ul class="highlight-list detail-highlights">
                 ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
             </ul>
@@ -430,32 +463,6 @@ function closeFilters() {
     document.body.classList.remove("drawer-open");
 }
 
-function openModal(id) {
-    const dialog = document.querySelector("[data-product-dialog]");
-    const content = document.querySelector("[data-dialog-content]");
-    if (!dialog || !content) return;
-
-    const product = getProduct(id);
-    content.innerHTML = `
-        <div class="dialog-content">
-            <img src="${product.image}" alt="${product.brand} ${product.name}" width="520" height="430">
-            <div>
-                <p class="eyebrow">${product.brand}</p>
-                <h2>${product.name}</h2>
-                <p class="price">${product.displayPrice}</p>
-                <ul class="highlight-list">
-                    ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
-                </ul>
-                <div class="button-row">
-                    <a class="btn btn-light" href="produktdetail.html?id=${product.id}">Mehr erfahren</a>
-                    <button class="btn btn-dark" type="button" data-add="${product.id}">In den Warenkorb</button>
-                </div>
-            </div>
-        </div>
-    `;
-    dialog.showModal();
-}
-
 function showToast(message) {
     const toast = document.querySelector("[data-toast]");
     if (!toast) return;
@@ -467,13 +474,11 @@ function showToast(message) {
 
 document.addEventListener("click", (event) => {
     const addButton = event.target.closest("[data-add]");
-    const modalButton = event.target.closest("[data-modal]");
     const removeButton = event.target.closest("[data-remove]");
     const galleryButton = event.target.closest("[data-gallery]");
     const categoryButton = event.target.closest("[data-category]");
 
     if (addButton) addToCart(addButton.dataset.add);
-    if (modalButton) openModal(modalButton.dataset.modal);
     if (removeButton) removeFromCart(removeButton.dataset.remove);
 
     if (categoryButton) {
@@ -496,7 +501,6 @@ document.addEventListener("click", (event) => {
     if (event.target.closest("[data-cart-close]")) closeCart();
     if (event.target.closest("[data-filter-open]")) openFilters();
     if (event.target.closest("[data-filter-close]")) closeFilters();
-    if (event.target.closest("[data-dialog-close]")) document.querySelector("[data-product-dialog]").close();
 });
 
 document.querySelectorAll("#searchInput, #sortSelect").forEach((input) => {
@@ -521,8 +525,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 setActiveNav();
-renderFeatured();
 renderShop();
 renderDetail();
 renderCompare();
+renderOffers();
 renderCart();

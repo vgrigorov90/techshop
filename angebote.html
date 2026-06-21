@@ -3,128 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aktuelle Angebote im TechShop: rabattierte Notebooks, Smartphones und Zubehoer mit klar ausgewiesener Ersparnis.">
-    <title>Angebote | TechShop</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="CampusTech Jena Bundles fuer Studium, Premium-Alltag und Homeoffice.">
+    <title>Angebote | CampusTech Jena</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="offers">
     <header class="site-header">
-        <a class="site-logo" href="index.html" aria-label="TechShop Startseite">TechShop</a>
-
-        <nav class="site-navigation" aria-label="Hauptnavigation">
-            <ul class="navigation-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="produkte.html">Produkte</a></li>
-                <li><a href="angebote.html" aria-current="page">Angebote</a></li>
-                <li><a href="warenkorb.html">Warenkorb</a></li>
-                <li><a href="impressum.html">Impressum</a></li>
-            </ul>
+        <a class="brand" href="index.html" aria-label="CampusTech Jena Startseite">CampusTech Jena</a>
+        <button class="nav-toggle" type="button" aria-label="Menue oeffnen" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="index.html" data-nav="home">Start</a>
+            <a href="produkte.html" data-nav="shop">Shop</a>
+            <a href="angebote.html" data-nav="offers">Angebote</a>
+            <a href="vergleich.html" data-nav="compare">Vergleich</a>
+            <a href="kontakt.html" data-nav="contact">Service</a>
         </nav>
-
-        <a class="cart-link" href="warenkorb.html" aria-label="Warenkorb mit 2 Artikeln">
-            <span class="cart-icon" aria-hidden="true">Warenkorb</span>
-            <span class="cart-count">2</span>
-        </a>
+        <button class="cart-indicator" type="button" data-cart-open>
+            Warenkorb <span data-cart-count>0</span>
+        </button>
     </header>
 
     <main>
-        <section class="page-header" aria-labelledby="offers-page-title">
-            <p class="section-kicker">Rabattierte Produkte</p>
-            <h1 id="offers-page-title">Aktuelle Angebote</h1>
-            <p>Hier findest du reduzierte Elektronikprodukte mit klar ausgewiesener Ersparnis.</p>
+        <section class="page-hero offers-hero">
+            <p class="eyebrow">Mixed Joint Bundling</p>
+            <h1>Mehr Setup, weniger Einzelkauf.</h1>
+            <p>Fertige Kombinationen fuer Studierende, Premium-Nutzer und produktive Homeoffice-Tage.</p>
         </section>
 
-        <section class="offers-highlight" aria-labelledby="highlight-title">
-            <h2 id="highlight-title">Top-Deal der Woche</h2>
-            <article class="product-card product-card--featured-offer">
-                <img src="images/student-bundle.svg" alt="Student Bundle mit Notebook, Maus und Tasche" width="480" height="320">
-                <p class="product-category">Bundle</p>
-                <h3>Student Bundle</h3>
-                <p class="product-description">Das Set kombiniert ein zuverlaessiges Notebook, eine Funkmaus und eine gepolsterte Tasche fuer den mobilen Lernalltag.</p>
-                <p class="old-price">Statt 749,00 EUR</p>
-                <p class="product-price">629,00 EUR</p>
-                <p class="saving">Ersparnis: 120,00 EUR</p>
-                <button class="btn" type="button">In den Warenkorb</button>
-            </article>
-        </section>
-
-        <section class="offers-list" aria-labelledby="all-offers-title">
-            <h2 id="all-offers-title">Alle reduzierten Produkte</h2>
-            <div class="product-grid">
-                <article class="product-card product-card--offer">
-                    <img src="images/smartphone-x1.svg" alt="SmartOne X1 Smartphone in Schwarz" width="360" height="240">
-                    <p class="product-category">Smartphone</p>
-                    <h3>SmartOne X1</h3>
-                    <p class="product-description">5G-Smartphone mit OLED-Display, starker Kamera und 128 GB Speicher.</p>
-                    <p class="old-price">Statt 699,00 EUR</p>
-                    <p class="product-price">649,00 EUR</p>
-                    <p class="saving">Ersparnis: 50,00 EUR</p>
-                    <button class="btn" type="button">In den Warenkorb</button>
-                </article>
-
-                <article class="product-card product-card--offer">
-                    <img src="images/usb-c-dock.svg" alt="USB-C Dock Pro mit mehreren Anschluessen" width="360" height="240">
-                    <p class="product-category">Zubehoer</p>
-                    <h3>USB-C Dock Pro</h3>
-                    <p class="product-description">Dockingstation fuer Notebook, Tablet und Monitor mit HDMI, Ethernet und USB.</p>
-                    <p class="old-price">Statt 99,00 EUR</p>
-                    <p class="product-price">79,00 EUR</p>
-                    <p class="saving">Ersparnis: 20,00 EUR</p>
-                    <button class="btn" type="button">In den Warenkorb</button>
-                </article>
-
-                <article class="product-card product-card--offer">
-                    <img src="images/notebook-study-15.svg" alt="StudyBook 15 Notebook fuer Office und Schule" width="360" height="240">
-                    <p class="product-category">Notebook</p>
-                    <h3>StudyBook 15</h3>
-                    <p class="product-description">Allround-Notebook mit grossem Display, leiser Tastatur und 512 GB SSD.</p>
-                    <p class="old-price">Statt 599,00 EUR</p>
-                    <p class="product-price">549,00 EUR</p>
-                    <p class="saving">Ersparnis: 50,00 EUR</p>
-                    <button class="btn" type="button">In den Warenkorb</button>
-                </article>
-
-                <article class="product-card product-card--offer">
-                    <img src="images/keyboard-mouse-set.svg" alt="Tastatur und Maus als kabelloses Set" width="360" height="240">
-                    <p class="product-category">Zubehoer</p>
-                    <h3>Keyboard Mouse Set</h3>
-                    <p class="product-description">Kabelloses Set fuer produktives Arbeiten am Schreibtisch oder im Homeoffice.</p>
-                    <p class="old-price">Statt 69,00 EUR</p>
-                    <p class="product-price">49,00 EUR</p>
-                    <p class="saving">Ersparnis: 20,00 EUR</p>
-                    <button class="btn" type="button">In den Warenkorb</button>
-                </article>
-            </div>
-        </section>
+        <section class="bundle-grid offer-grid" data-offer-grid aria-label="Aktuelle Bundles"></section>
     </main>
 
     <footer class="site-footer">
-        <section class="footer-section" aria-labelledby="footer-contact">
-            <h2 id="footer-contact">Kontakt</h2>
-            <address>
-                TechShop GmbH<br>
-                Musterstrasse 12, 10115 Berlin<br>
-                E-Mail: <a href="mailto:kontakt@techshop.example">kontakt@techshop.example</a><br>
-                Telefon: <a href="tel:+493012345678">+49 30 12345678</a>
-            </address>
-        </section>
-
-        <section class="footer-section" aria-labelledby="footer-hours">
-            <h2 id="footer-hours">Oeffnungszeiten</h2>
-            <p>Montag bis Freitag: 09:00 - 18:00 Uhr</p>
-            <p>Samstag: 10:00 - 14:00 Uhr</p>
-        </section>
-
-        <section class="footer-section" aria-labelledby="footer-social">
-            <h2 id="footer-social">Social Media</h2>
-            <ul class="social-list">
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">LinkedIn</a></li>
-            </ul>
-        </section>
-
-        <p class="copyright">&copy; 2026 TechShop. Alle Rechte vorbehalten.</p>
+        <p>CampusTech Jena</p>
+        <p>Bundles mit lokalen Produktfotos und klarer Ersparnis.</p>
+        <p><a href="produkte.html">Zum Shop</a></p>
     </footer>
+
+    <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+        <div class="drawer-head">
+            <h2>Warenkorb</h2>
+            <button class="icon-btn" type="button" data-cart-close>Schliessen</button>
+        </div>
+        <div class="drawer-items" data-cart-items></div>
+        <div class="drawer-total">
+            <span>Summe</span>
+            <strong data-cart-total>0 €</strong>
+        </div>
+    </aside>
+    <div class="toast" data-toast></div>
+    <script src="script.js"></script>
 </body>
 </html>
