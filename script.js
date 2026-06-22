@@ -14,6 +14,8 @@ const products = [
             Display: "13,6\" Liquid Retina",
             Prozessor: "Apple M4",
             Speicher: "ab 16 GB RAM / 256 GB SSD",
+            Akku: "bis zu 18 Std.",
+            Kamera: "12 MP Center Stage",
             Einsatz: "Studium und mobiles Arbeiten"
         },
         featured: true
@@ -32,6 +34,8 @@ const products = [
             Display: "16\" WUXGA IPS",
             Prozessor: "Intel Core Ultra / Core 5",
             Speicher: "bis 64 GB RAM möglich",
+            Akku: "ganzer Uni- und Office-Tag",
+            Kamera: "FHD-Webcam",
             Einsatz: "Office, Projektarbeit, Verwaltung"
         },
         featured: true
@@ -50,6 +54,8 @@ const products = [
             Display: "16\" Full-HD+",
             Prozessor: "Intel Core 5",
             Speicher: "512 GB SSD",
+            Akku: "solider Homeoffice-Tag",
+            Kamera: "FHD-Webcam",
             Einsatz: "Homeoffice und Alltag"
         },
         featured: false
@@ -68,6 +74,8 @@ const products = [
             Display: "14\" OLED",
             Prozessor: "Intel Core Ultra",
             Speicher: "16 GB RAM / 1 TB SSD",
+            Akku: "mobiler Arbeitstag",
+            Kamera: "FHD IR-Webcam",
             Einsatz: "Studium, Office und kreatives Arbeiten"
         },
         featured: true
@@ -85,7 +93,9 @@ const products = [
         specs: {
             Display: "6,9\" Dynamic AMOLED 2X",
             Prozessor: "Snapdragon 8 Elite for Galaxy",
+            Speicher: "ab 256 GB",
             Kamera: "200 MP + 50 MP Ultraweitwinkel",
+            Akku: "5000 mAh",
             Einsatz: "Foto und Produktivität"
         },
         featured: true
@@ -103,7 +113,9 @@ const products = [
         specs: {
             Display: "Super Retina XDR",
             Prozessor: "Apple A19",
+            Speicher: "ab 128 GB",
             Kamera: "48 MP Hauptkamera",
+            Akku: "All-Day Battery",
             Einsatz: "Premium-Smartphone für Alltag und Uni"
         },
         featured: true
@@ -122,7 +134,9 @@ const products = [
         specs: {
             Display: "6,67\" AMOLED, 120 Hz",
             Prozessor: "MediaTek Helio G99-Ultra",
+            Speicher: "ab 128 GB",
             Kamera: "108 MP Hauptkamera",
+            Akku: "5.500 mAh",
             Einsatz: "Budget-Smartphone für Alltag"
         },
         featured: true
@@ -140,7 +154,9 @@ const products = [
         specs: {
             Display: "6,1\" OLED",
             Prozessor: "Google Tensor G3",
+            Speicher: "128 GB",
             Kamera: "64 MP Dual-Kamera",
+            Akku: "24+ Std.",
             Einsatz: "smarte Uni- und Alltagspower"
         },
         featured: false
@@ -402,6 +418,7 @@ const STUDENT_DISCOUNT_RATE = 0.1;
 let cart = (JSON.parse(localStorage.getItem("techshop-warenkorb")) || [])
     .filter((entry) => catalog.some((product) => product.id === entry.id));
 let activeCategory = "all";
+let activeCompareCategory = "Laptops";
 
 function isStudentDiscountActive() {
     return localStorage.getItem("campustech-student-discount") === "active";
@@ -457,6 +474,10 @@ function priceInline(product) {
 
 function getProduct(id) {
     return catalog.find((product) => product.id === id) || products[0];
+}
+
+function getCartTotal() {
+    return cart.reduce((sum, item) => sum + getCurrentPrice(getProduct(item.id)) * item.quantity, 0);
 }
 
 function setActiveNav() {
@@ -607,7 +628,7 @@ function renderStudentMembership() {
                         <li>Priority Support</li>
                     </ul>
                 </div>
-                <a class="btn btn-dark" href="angebote.html">Jetzt Mitglied werden</a>
+                <button class="btn btn-dark" type="button" data-checkout-membership>Jetzt Mitglied werden</button>
             </article>
         `;
     });
@@ -653,6 +674,61 @@ function refreshPrices() {
     renderStudentDiscountPromo();
     renderStudentDiscountBadge();
     renderStudentDiscountDeactivation();
+}
+
+function ensurePaymentModal() {
+    let modal = document.querySelector("[data-payment-modal]");
+    if (modal) return modal;
+
+    modal = document.createElement("aside");
+    modal.className = "payment-modal";
+    modal.dataset.paymentModal = "";
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `
+        <div class="payment-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+            <div class="payment-head">
+                <div>
+                    <p class="eyebrow">Checkout Simulation</p>
+                    <h2 id="paymentTitle">Zahlung auswählen</h2>
+                </div>
+                <button class="icon-btn payment-close" type="button" data-payment-close aria-label="Schließen">
+                    <img src="images/abstract/close.svg" alt="" width="22" height="22">
+                </button>
+            </div>
+            <div class="payment-summary">
+                <span data-payment-label>Warenkorb</span>
+                <strong data-payment-amount>0 €</strong>
+            </div>
+            <fieldset class="payment-methods">
+                <legend>Zahlungsart</legend>
+                <label><input type="radio" name="payment-method" value="Karte" checked> Karte</label>
+                <label><input type="radio" name="payment-method" value="Apple Pay"> Apple Pay</label>
+                <label><input type="radio" name="payment-method" value="PayPal"> PayPal</label>
+            </fieldset>
+            <button class="btn btn-dark payment-confirm" type="button" data-payment-confirm>Zahlung simulieren</button>
+            <p class="payment-status" data-payment-status></p>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function openPaymentModal({ amount, label }) {
+    const modal = ensurePaymentModal();
+    modal.querySelector("[data-payment-label]").textContent = label;
+    modal.querySelector("[data-payment-amount]").textContent = formatMoney(amount);
+    modal.querySelector("[data-payment-status]").textContent = "";
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("payment-open");
+}
+
+function closePaymentModal() {
+    const modal = document.querySelector("[data-payment-modal]");
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("payment-open");
 }
 
 function renderDetail() {
@@ -740,7 +816,8 @@ function renderCompare() {
     const table = document.querySelector("[data-compare-table]");
     if (!table) return;
 
-    table.innerHTML = products.slice(0, 4).map((product) => `
+    const categoryProducts = products.filter((product) => product.category === activeCompareCategory);
+    table.innerHTML = categoryProducts.map((product) => `
         <tr>
             <td>
                 <a class="compare-product" href="produktdetail.html?id=${product.id}">
@@ -749,9 +826,12 @@ function renderCompare() {
                 </a>
             </td>
             <td class="compare-price">${priceInline(product)}</td>
-            <td>${product.specs.Display || product.specs.Typ || product.category}</td>
-            <td>${product.specs.Prozessor || product.specs.Anschluss || product.specs.Verbindung || "-"}</td>
-            <td>${product.specs.Einsatz}</td>
+            <td>${product.specs.Prozessor || "-"}</td>
+            <td>${product.specs.Display || "-"}</td>
+            <td>${product.specs.Speicher || "-"}</td>
+            <td>${product.specs.Akku || "-"}</td>
+            <td>${product.specs.Kamera || "-"}</td>
+            <td>${product.specs.Einsatz || "-"}</td>
         </tr>
     `).join("");
 }
@@ -780,7 +860,7 @@ function removeFromCart(id) {
 
 function renderCart() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = cart.reduce((sum, item) => sum + getCurrentPrice(getProduct(item.id)) * item.quantity, 0);
+    const total = getCartTotal();
 
     document.querySelectorAll("[data-cart-count]").forEach((node) => {
         node.textContent = count;
@@ -801,7 +881,9 @@ function renderCart() {
                             <span>${item.quantity} × ${formatCurrentPrice(product)}</span>
                         </p>
                     </div>
-                    <button type="button" data-remove="${product.id}" aria-label="${product.name} entfernen">×</button>
+                    <button type="button" data-remove="${product.id}" aria-label="${product.name} entfernen">
+                        <img src="images/abstract/close.svg" alt="" width="24" height="24">
+                    </button>
                 </article>
             `;
         }).join("") : `<p class="empty-state">Der Warenkorb ist leer.</p>`;
@@ -847,9 +929,14 @@ document.addEventListener("click", (event) => {
     const galleryButton = event.target.closest("[data-gallery-index]");
     const galleryStep = event.target.closest("[data-gallery-step]");
     const categoryButton = event.target.closest("[data-category]");
+    const compareCategoryButton = event.target.closest("[data-compare-category]");
     const studentDiscountAccept = event.target.closest("[data-student-discount-accept]");
     const studentDiscountDecline = event.target.closest("[data-student-discount-decline]");
     const studentDiscountDeactivate = event.target.closest("[data-student-discount-deactivate]");
+    const cartCheckout = event.target.closest("[data-checkout-cart]");
+    const membershipCheckout = event.target.closest("[data-checkout-membership]");
+    const paymentClose = event.target.closest("[data-payment-close]");
+    const paymentConfirm = event.target.closest("[data-payment-confirm]");
 
     if (addButton) addToCart(addButton.dataset.add);
     if (removeButton) removeFromCart(removeButton.dataset.remove);
@@ -872,6 +959,29 @@ document.addEventListener("click", (event) => {
         showToast("Studentenrabatt deaktiviert.");
     }
 
+    if (cartCheckout) {
+        if (!cart.length) {
+            showToast("Der Warenkorb ist leer.");
+            return;
+        }
+        openPaymentModal({ amount: getCartTotal(), label: "Warenkorb" });
+        closeCart();
+    }
+
+    if (membershipCheckout) {
+        openPaymentModal({ amount: 4.99, label: "CampusTech Student+ / Monat" });
+    }
+
+    if (paymentClose) {
+        closePaymentModal();
+    }
+
+    if (paymentConfirm) {
+        const modal = ensurePaymentModal();
+        const method = modal.querySelector("input[name='payment-method']:checked").value;
+        modal.querySelector("[data-payment-status]").textContent = `Zahlung mit ${method} simuliert.`;
+    }
+
     if (categoryButton) {
         activeCategory = categoryButton.dataset.category;
         document.querySelectorAll("[data-category]").forEach((button) => {
@@ -879,6 +989,14 @@ document.addEventListener("click", (event) => {
         });
         renderShop();
         closeFilters();
+    }
+
+    if (compareCategoryButton) {
+        activeCompareCategory = compareCategoryButton.dataset.compareCategory;
+        document.querySelectorAll("[data-compare-category]").forEach((button) => {
+            button.classList.toggle("active", button === compareCategoryButton);
+        });
+        renderCompare();
     }
 
     if (galleryButton) {
@@ -914,6 +1032,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         closeCart();
         closeFilters();
+        closePaymentModal();
     }
     if (document.querySelector("[data-product-detail]")) {
         if (event.key === "ArrowLeft") stepGallery(-1);

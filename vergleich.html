@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vergleich aktueller Premium-Produkte mit Preis, Display, Chip und Fokus.">
+    <meta name="description" content="Vergleich aktueller CampusTech Laptops und Smartphones nach Preis, Prozessor, Bildschirm, Speicher, Akku, Kamera und Einsatz.">
     <title>Vergleich | CampusTech Jena</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,7 +22,7 @@
             <a href="kontakt.html" data-nav="contact">Service</a>
         </nav>
         <button class="cart-indicator" type="button" data-cart-open>
-            Warenkorb <span data-cart-count>0</span>
+            <img src="images/abstract/cart.svg" alt="" width="22" height="22"> Warenkorb <span data-cart-count>0</span>
         </button>
     </header>
 
@@ -30,19 +30,27 @@
         <section class="page-hero">
             <p class="eyebrow">Vergleich</p>
             <h1>Modelle im Vergleich.</h1>
-            <p>Preis, Display, Leistung und Einsatz für Campus und Homeoffice.</p>
+            <p>Preis, Prozessor, Bildschirm, Speicher, Akku und Kamera für Laptops und Smartphones.</p>
         </section>
+
+        <div class="compare-tabs" aria-label="Kategorie auswählen">
+            <button class="active" type="button" data-compare-category="Laptops">Laptops</button>
+            <button type="button" data-compare-category="Smartphones">Smartphones</button>
+        </div>
 
         <section class="compare-wrap">
             <table class="compare-table">
-                <caption>Premium-Produkte im Vergleich</caption>
+                <caption>Produkte im Vergleich nach Kategorien</caption>
                 <thead>
                     <tr>
                         <th scope="col">Modell</th>
                         <th scope="col">Preis</th>
-                        <th scope="col">Display</th>
-                        <th scope="col">Chip</th>
-                        <th scope="col">Fokus</th>
+                        <th scope="col">Prozessor</th>
+                        <th scope="col">Bildschirm</th>
+                        <th scope="col">Speicher</th>
+                        <th scope="col">Akku</th>
+                        <th scope="col">Kamera</th>
+                        <th scope="col">Einsatz</th>
                     </tr>
                 </thead>
                 <tbody data-compare-table></tbody>
@@ -65,6 +73,7 @@
         <div class="drawer-total">
             <span>Summe</span>
             <strong data-cart-total>0 €</strong>
+            <button class="btn btn-dark checkout-btn" type="button" data-checkout-cart>Kaufen</button>
         </div>
     </aside>
     <div class="toast" data-toast></div>
