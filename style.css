@@ -1892,6 +1892,44 @@ address {
         grid-template-columns: 1fr;
     }
 
+    .compare-table {
+        min-width: 920px;
+        table-layout: fixed;
+    }
+
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+        width: 220px;
+    }
+
+    .compare-table th:nth-child(2),
+    .compare-table td:nth-child(2) {
+        width: 120px;
+    }
+
+    .compare-product {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .compare-product img {
+        flex: 0 0 56px;
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+    }
+
+    .compare-product strong {
+        display: block;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    .compare-price {
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
     .gallery-thumbs {
         grid-auto-columns: minmax(108px, 42%);
     }
