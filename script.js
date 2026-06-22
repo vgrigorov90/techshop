@@ -5,6 +5,7 @@ const products = [
         brand: "Apple",
         category: "Laptops",
         price: 1199,
+        pricePrefix: "ab ",
         displayPrice: "ab 1.199 €",
         image: "images/products/macbook_air_13_1.webp",
         gallery: ["images/products/macbook_air_13_1.webp", "images/products/macbook_air_13_2.webp", "images/products/macbook_air_3.webp"],
@@ -54,6 +55,24 @@ const products = [
         featured: false
     },
     {
+        id: "asus-zenbook-14",
+        name: "Zenbook 14 OLED",
+        brand: "ASUS",
+        category: "Laptops",
+        price: 1099,
+        displayPrice: "1.099 €",
+        image: "images/products/asus-zenbook-14_1.webp",
+        gallery: ["images/products/asus-zenbook-14_1.webp", "images/products/asus-zenbook-14_2.webp", "images/products/asus-zenbook-14_3.webp"],
+        highlights: ["14\" OLED", "Intel Core Ultra", "leichtes Alu-Gehäuse"],
+        specs: {
+            Display: "14\" OLED",
+            Prozessor: "Intel Core Ultra",
+            Speicher: "16 GB RAM / 1 TB SSD",
+            Einsatz: "Studium, Office und kreatives Arbeiten"
+        },
+        featured: true
+    },
+    {
         id: "galaxy-s25-ultra",
         name: "Galaxy S25 Ultra",
         brand: "Samsung",
@@ -72,11 +91,30 @@ const products = [
         featured: true
     },
     {
+        id: "iphone-17",
+        name: "iPhone 17",
+        brand: "Apple",
+        category: "Smartphones",
+        price: 949,
+        displayPrice: "949 €",
+        image: "images/products/apple-iphone-17_1.webp",
+        gallery: ["images/products/apple-iphone-17_1.webp", "images/products/apple-iphone-17_2.webp", "images/products/apple-iphone-17_3.webp"],
+        highlights: ["Super Retina XDR", "A19 Chip", "48 MP Kamera"],
+        specs: {
+            Display: "Super Retina XDR",
+            Prozessor: "Apple A19",
+            Kamera: "48 MP Hauptkamera",
+            Einsatz: "Premium-Smartphone für Alltag und Uni"
+        },
+        featured: true
+    },
+    {
         id: "redmi-note-14",
         name: "Redmi Note 14",
         brand: "Xiaomi",
         category: "Smartphones",
         price: 199,
+        pricePrefix: "ab ",
         displayPrice: "ab 199 €",
         image: "images/products/xiaomi-redmi-note-14_1.webp",
         gallery: ["images/products/xiaomi-redmi-note-14_1.webp", "images/products/xiaomi-redmi-note-14_2.webp", "images/products/xiaomi-redmi-note-14_3.webp"],
@@ -88,6 +126,24 @@ const products = [
             Einsatz: "Budget-Smartphone für Alltag"
         },
         featured: true
+    },
+    {
+        id: "google-pixel-8a",
+        name: "Pixel 8a",
+        brand: "Google",
+        category: "Smartphones",
+        price: 499,
+        displayPrice: "499 €",
+        image: "images/products/google-pixel-8a_1.webp",
+        gallery: ["images/products/google-pixel-8a_1.webp", "images/products/google-pixel-8a_2.webp", "images/products/google-pixel-8a_3.webp"],
+        highlights: ["Google Tensor G3", "AI-Kamera", "7 Jahre Updates"],
+        specs: {
+            Display: "6,1\" OLED",
+            Prozessor: "Google Tensor G3",
+            Kamera: "64 MP Dual-Kamera",
+            Einsatz: "smarte Uni- und Alltagspower"
+        },
+        featured: false
     },
     {
         id: "sony-wh-1000xm6",
@@ -316,16 +372,88 @@ const bundles = [
             Einsatz: "Premium Alltag"
         },
         featured: false
+    },
+    {
+        id: "ai-productivity-pack",
+        name: "AI Productivity Pack",
+        brand: "CampusTech",
+        category: "Bundle",
+        price: 24.99,
+        priceSuffix: "/Monat",
+        displayPrice: "24,99 €/Monat",
+        saving: "KI-Tools im Monatsbundle",
+        image: "images/abstract/ai_producivity_pack.svg",
+        gallery: ["images/products/Chat-GPT.webp", "images/products/Claude.webp", "images/products/Microsoft-Copilot.png"],
+        description: "KI-Unterstützung für Studium, Schreiben, Recherche und Produktivität.",
+        highlights: ["ChatGPT Plus", "Claude Pro", "Microsoft Copilot Pro"],
+        specs: {
+            Enthalten: "ChatGPT Plus, Claude Pro und Microsoft Copilot Pro",
+            Abrechnung: "monatlich kündbar",
+            Vorteil: "KI-Unterstützung für Studium, Schreiben, Recherche und Produktivität",
+            Einsatz: "AI Productivity"
+        },
+        featured: false
     }
 ];
 
 const catalog = [...products, ...bundles];
+const STUDENT_DISCOUNT_RATE = 0.1;
 
 let cart = (JSON.parse(localStorage.getItem("techshop-warenkorb")) || [])
     .filter((entry) => catalog.some((product) => product.id === entry.id));
 let activeCategory = "all";
 
-const euro = (value) => `${value.toLocaleString("de-DE")} €`;
+function isStudentDiscountActive() {
+    return localStorage.getItem("campustech-student-discount") === "active";
+}
+
+function formatMoney(value, suffix = "") {
+    const rounded = Math.round(value * 100) / 100;
+    const hasCents = !Number.isInteger(rounded);
+    return `${rounded.toLocaleString("de-DE", {
+        minimumFractionDigits: hasCents ? 2 : 0,
+        maximumFractionDigits: hasCents ? 2 : 0
+    })} €${suffix}`;
+}
+
+function formatBasePrice(product) {
+    return `${product.pricePrefix || ""}${formatMoney(product.price, product.priceSuffix || "")}`;
+}
+
+function getCurrentPrice(product) {
+    const value = isStudentDiscountActive() ? product.price * (1 - STUDENT_DISCOUNT_RATE) : product.price;
+    return Math.round(value * 100) / 100;
+}
+
+function formatCurrentPrice(product) {
+    return `${product.pricePrefix || ""}${formatMoney(getCurrentPrice(product), product.priceSuffix || "")}`;
+}
+
+function priceMarkup(product, className = "price") {
+    if (!isStudentDiscountActive()) {
+        return `<p class="${className}">${formatBasePrice(product)}</p>`;
+    }
+
+    return `
+        <p class="${className} price-discounted">
+            <span class="original-price">${formatBasePrice(product)}</span>
+            <span class="discount-price">${formatCurrentPrice(product)}</span>
+        </p>
+    `;
+}
+
+function priceInline(product) {
+    if (!isStudentDiscountActive()) {
+        return `<strong>${formatBasePrice(product)}</strong>`;
+    }
+
+    return `
+        <strong class="inline-discount">
+            <span class="original-price">${formatBasePrice(product)}</span>
+            <span class="discount-price">${formatCurrentPrice(product)}</span>
+        </strong>
+    `;
+}
 
 function getProduct(id) {
     return catalog.find((product) => product.id === id) || products[0];
@@ -348,7 +476,7 @@ function productCard(product) {
                     <span>${product.category}</span>
                 </div>
                 <h3>${product.name}</h3>
-                <p class="price">${product.displayPrice}</p>
+                ${priceMarkup(product)}
                 <ul class="highlight-list">
                     ${product.highlights.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}
                 </ul>
@@ -408,7 +536,7 @@ function offerCard(bundle) {
                 </ul>
                 <div class="bundle-prices">
                     <span>Einzelpreis <strong>${bundle.oldPrice}</strong></span>
-                    <span>Bundlepreis <strong>${bundle.displayPrice}</strong></span>
+                    <span>Bundlepreis ${priceInline(bundle)}</span>
                 </div>
                 <div class="product-actions">
                     <a class="btn btn-dark" href="produktdetail.html?id=${bundle.id}">Zum Bundle</a>
@@ -425,6 +553,108 @@ function renderOffers() {
     });
 }
 
+function renderStudentDiscountPromo() {
+    document.querySelectorAll("[data-student-discount-promo]").forEach((target) => {
+        if (isStudentDiscountActive()) {
+            target.innerHTML = `
+                <div class="student-discount-card is-active">
+                    <div>
+                        <p class="eyebrow">Studentenrabatt aktiv</p>
+                        <h2>10 % Rabatt sind aktiviert.</h2>
+                        <p>Alle Produkt- und Bundlepreise wurden automatisch neu berechnet.</p>
+                    </div>
+                    <span class="student-discount-mark">🎓</span>
+                </div>
+            `;
+            return;
+        }
+
+        if (sessionStorage.getItem("campustech-student-discount-dismissed") === "true") {
+            target.innerHTML = "";
+            return;
+        }
+
+        target.innerHTML = `
+            <div class="student-discount-card">
+                <div>
+                    <p class="eyebrow">Studentenrabatt sichern</p>
+                    <h2>Bist du Student oder Studentin?</h2>
+                    <p>Aktiviere jetzt deinen exklusiven Studentenrabatt und spare 10 % auf alle Produkte und Bundles.</p>
+                </div>
+                <div class="student-discount-actions">
+                    <button class="btn btn-dark" type="button" data-student-discount-accept>Ja, Studentenrabatt sichern</button>
+                    <button class="btn btn-light" type="button" data-student-discount-decline>Nein, danke</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function renderStudentMembership() {
+    document.querySelectorAll("[data-student-membership]").forEach((target) => {
+        target.innerHTML = `
+            <article class="membership-card">
+                <div>
+                    <p class="eyebrow">CampusTech Student+</p>
+                    <h2>CampusTech Student+</h2>
+                    <p class="membership-price">4,99 €/Monat</p>
+                    <ul>
+                        <li>Kostenloser Zugang zu KI-Tools</li>
+                        <li>Microsoft Office inklusive</li>
+                        <li>Kostenloser Versand</li>
+                        <li>Exklusive Bundle-Angebote</li>
+                        <li>Rabatt auf Software Bundles</li>
+                        <li>Priority Support</li>
+                    </ul>
+                </div>
+                <a class="btn btn-dark" href="angebote.html">Jetzt Mitglied werden</a>
+            </article>
+        `;
+    });
+}
+
+function renderStudentDiscountBadge() {
+    document.querySelectorAll(".student-nav-badge").forEach((badge) => badge.remove());
+    if (!isStudentDiscountActive()) return;
+
+    document.querySelectorAll(".site-header").forEach((header) => {
+        const cartButton = header.querySelector("[data-cart-open]");
+        if (!cartButton) return;
+        const badge = document.createElement("span");
+        badge.className = "student-nav-badge";
+        badge.textContent = "🎓 Studentenrabatt aktiv";
+        header.insertBefore(badge, cartButton);
+    });
+}
+
+function renderStudentDiscountDeactivation() {
+    document.querySelectorAll(".student-discount-deactivate").forEach((node) => node.remove());
+    if (!isStudentDiscountActive()) return;
+
+    const target = document.querySelector(".cart-drawer") || document.body.lastElementChild;
+    const section = document.createElement("section");
+    section.className = "student-discount-deactivate";
+    section.innerHTML = `
+        <div>
+            <p class="eyebrow">Studentenrabatt aktiv</p>
+            <p>Du kannst den 10 %-Rabatt jederzeit deaktivieren.</p>
+        </div>
+        <button class="btn btn-light" type="button" data-student-discount-deactivate>Studentenrabatt deaktivieren</button>
+    `;
+    document.body.insertBefore(section, target);
+}
+
+function refreshPrices() {
+    renderShop();
+    renderDetail();
+    renderCompare();
+    renderOffers();
+    renderCart();
+    renderStudentDiscountPromo();
+    renderStudentDiscountBadge();
+    renderStudentDiscountDeactivation();
+}
+
 function renderDetail() {
     const target = document.querySelector("[data-product-detail]");
     if (!target) return;
@@ -435,9 +665,13 @@ function renderDetail() {
     target.innerHTML = `
         <div class="detail-gallery" data-gallery-current="0">
             <div class="detail-media">
-                <button class="gallery-nav gallery-prev" type="button" data-gallery-step="-1" aria-label="Vorheriges Bild">‹</button>
+                <button class="gallery-nav gallery-prev" type="button" data-gallery-step="-1" aria-label="Vorheriges Bild">
+                    <img src="images/abstract/arrow_left.svg" alt="" width="46" height="46">
+                </button>
                 <img class="detail-main-image" data-main-image src="${product.gallery[0]}" alt="${product.brand} ${product.name}" width="900" height="700">
-                <button class="gallery-nav gallery-next" type="button" data-gallery-step="1" aria-label="Nächstes Bild">›</button>
+                <button class="gallery-nav gallery-next" type="button" data-gallery-step="1" aria-label="Nächstes Bild">
+                    <img src="images/abstract/arrow_right.svg" alt="" width="46" height="46">
+                </button>
             </div>
             <div class="gallery-thumbs">
                 ${product.gallery.map((image, index) => `
@@ -452,8 +686,8 @@ function renderDetail() {
             <h1>${product.name}</h1>
             ${product.badge ? `<p class="bundle-special-badge">${product.badge}</p>` : ""}
             ${product.description ? `<p class="product-copy">${product.description}</p>` : ""}
-            ${product.oldPrice ? `<p class="old-price">${product.oldPrice}</p>` : ""}
-            <p class="price">${product.displayPrice}</p>
+            ${product.oldPrice ? `<p class="old-price">Einzelpreis: ${product.oldPrice}</p>` : ""}
+            ${priceMarkup(product)}
             ${product.saving ? `<p class="saving">${product.saving}</p>` : ""}
             <ul class="highlight-list detail-highlights">
                 ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
@@ -514,7 +748,7 @@ function renderCompare() {
                     <strong>${product.brand} ${product.name}</strong>
                 </a>
             </td>
-            <td>${product.displayPrice}</td>
+            <td class="compare-price">${priceInline(product)}</td>
             <td>${product.specs.Display || product.specs.Typ || product.category}</td>
             <td>${product.specs.Prozessor || product.specs.Anschluss || product.specs.Verbindung || "-"}</td>
             <td>${product.specs.Einsatz}</td>
@@ -546,13 +780,13 @@ function removeFromCart(id) {
 
 function renderCart() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = cart.reduce((sum, item) => sum + getProduct(item.id).price * item.quantity, 0);
+    const total = cart.reduce((sum, item) => sum + getCurrentPrice(getProduct(item.id)) * item.quantity, 0);
 
     document.querySelectorAll("[data-cart-count]").forEach((node) => {
         node.textContent = count;
     });
     document.querySelectorAll("[data-cart-total]").forEach((node) => {
-        node.textContent = euro(total);
+        node.textContent = formatMoney(total);
     });
     document.querySelectorAll("[data-cart-items]").forEach((node) => {
         node.innerHTML = cart.length ? cart.map((item) => {
@@ -562,7 +796,10 @@ function renderCart() {
                     <img src="${product.image}" alt="${product.brand} ${product.name}" width="76" height="76">
                     <div>
                         <strong>${product.name}</strong>
-                        <p>${item.quantity} × ${product.displayPrice}</p>
+                        <p class="${isStudentDiscountActive() ? "bag-price-discounted" : ""}">
+                            ${isStudentDiscountActive() ? `<span class="original-price">${formatBasePrice(product)}</span>` : ""}
+                            <span>${item.quantity} × ${formatCurrentPrice(product)}</span>
+                        </p>
                     </div>
                     <button type="button" data-remove="${product.id}" aria-label="${product.name} entfernen">×</button>
                 </article>
@@ -610,9 +847,30 @@ document.addEventListener("click", (event) => {
     const galleryButton = event.target.closest("[data-gallery-index]");
     const galleryStep = event.target.closest("[data-gallery-step]");
     const categoryButton = event.target.closest("[data-category]");
+    const studentDiscountAccept = event.target.closest("[data-student-discount-accept]");
+    const studentDiscountDecline = event.target.closest("[data-student-discount-decline]");
+    const studentDiscountDeactivate = event.target.closest("[data-student-discount-deactivate]");
 
     if (addButton) addToCart(addButton.dataset.add);
     if (removeButton) removeFromCart(removeButton.dataset.remove);
+
+    if (studentDiscountAccept) {
+        localStorage.setItem("campustech-student-discount", "active");
+        sessionStorage.removeItem("campustech-student-discount-dismissed");
+        refreshPrices();
+        showToast("Studentenrabatt aktiviert.");
+    }
+
+    if (studentDiscountDecline) {
+        sessionStorage.setItem("campustech-student-discount-dismissed", "true");
+        renderStudentDiscountPromo();
+    }
+
+    if (studentDiscountDeactivate) {
+        localStorage.removeItem("campustech-student-discount");
+        refreshPrices();
+        showToast("Studentenrabatt deaktiviert.");
+    }
 
     if (categoryButton) {
         activeCategory = categoryButton.dataset.category;
@@ -669,3 +927,7 @@ renderDetail();
 renderCompare();
 renderOffers();
 renderCart();
+renderStudentDiscountPromo();
+renderStudentMembership();
+renderStudentDiscountBadge();
+renderStudentDiscountDeactivation();
