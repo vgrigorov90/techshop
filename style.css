@@ -1497,9 +1497,16 @@ address {
     border-bottom: 0;
 }
 
+.drawer-total strong {
+    display: block;
+    white-space: nowrap;
+}
+
 .drawer-total .checkout-btn {
-    flex-basis: 100%;
-    width: 100%;
+    flex: 0 0 auto;
+    min-width: 112px;
+    width: auto;
+    padding-inline: 20px;
 }
 
 .drawer-head h2 {
