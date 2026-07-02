@@ -41,7 +41,7 @@
                     Fürstengraben 1<br>
                     07743 Jena
                 </address>
-                <p><a href="mailto:service@techshop.example">service@techshop.example</a></p>
+                <p><a href="mailto:service@campustech-jena.de">service@campustech-jena.de</a></p>
                 <p><a href="tel:+493641000000">+49 3641 000000</a></p>
             </article>
 
@@ -56,8 +56,36 @@
 
             <article class="contact-card service-copy">
                 <h2>Service</h2>
-                <p>Setup, Datenübertragung und Produktauswahl. Ohne Druck.</p>
+                <p>Setup, Datenübertragung und Produktauswahl. Wir nehmen uns Zeit.</p>
                 <a class="btn btn-dark" href="mailto:service@campustech-jena.de?subject=Termin%20bei%20CampusTech%20Jena&body=Hallo%20CampusTech%20Jena,%0A%0Aich%20möchte%20einen%20Beratungstermin%20vereinbaren.%0A%0AName:%0AWunschtermin:%0AThema:">Termin anfragen</a>
+            </article>
+
+            <article class="contact-card contact-form-card">
+                <h2>Beratung anfragen</h2>
+                <form class="contact-form" data-contact-form>
+                    <label>
+                        <span>Name</span>
+                        <input class="input" type="text" name="name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>E-Mail</span>
+                        <input class="input" type="email" name="email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        <span>Thema</span>
+                        <select class="input" name="subject" required>
+                            <option value="Produktberatung">Produktberatung</option>
+                            <option value="Bestellung und Abholung">Bestellung und Abholung</option>
+                            <option value="Setup und Datenübertragung">Setup und Datenübertragung</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Nachricht</span>
+                        <textarea class="input" name="message" rows="4" placeholder="Wobei können wir helfen?" required></textarea>
+                    </label>
+                    <button class="btn btn-dark" type="submit">Anfrage speichern</button>
+                    <p class="form-status" data-contact-status aria-live="polite"></p>
+                </form>
             </article>
 
             <aside class="map-placeholder" aria-label="Karte">

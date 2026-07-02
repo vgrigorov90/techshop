@@ -1,4 +1,4 @@
-const products = [
+let products = [
     {
         id: "macbook-air",
         name: "MacBook Air 13\"",
@@ -303,7 +303,7 @@ const products = [
     }
 ];
 
-const bundles = [
+let bundles = [
     {
         id: "student-bundle",
         name: "Student Bundle",
@@ -412,13 +412,50 @@ const bundles = [
     }
 ];
 
-const catalog = [...products, ...bundles];
+let catalog = [...products, ...bundles];
 const STUDENT_DISCOUNT_RATE = 0.1;
+const API_BASE = "api";
+
+const serverProducts = typeof window !== "undefined" && Array.isArray(window.CAMPUS_PRODUCTS) ? window.CAMPUS_PRODUCTS : [];
+const serverBundles = typeof window !== "undefined" && Array.isArray(window.CAMPUS_BUNDLES) ? window.CAMPUS_BUNDLES : [];
+const databaseErrorMessage = typeof window !== "undefined" && window.CAMPUS_DATABASE_ERROR ? String(window.CAMPUS_DATABASE_ERROR) : "";
+
+if (serverProducts.length || databaseErrorMessage) {
+    products = serverProducts;
+    bundles = serverBundles;
+    catalog = [...products, ...bundles];
+}
 
 let cart = (JSON.parse(localStorage.getItem("techshop-warenkorb")) || [])
     .filter((entry) => catalog.some((product) => product.id === entry.id));
 let activeCategory = "all";
 let activeCompareCategory = "Laptops";
+let keepServerRenderedShop = serverProducts.length && Boolean(document.querySelector("[data-product-grid]")?.children.length);
+
+async function fetchJson(path, options = {}) {
+    const { headers = {}, ...fetchOptions } = options;
+    const response = await fetch(`${API_BASE}/${path}`, {
+        ...fetchOptions,
+        headers: { Accept: "application/json", ...headers },
+        cache: fetchOptions.cache || "no-store"
+    });
+
+    const data = await response.json().catch(() => {
+        throw new Error("Die PHP-Datei liefert kein JSON. Bitte über einen PHP-Server öffnen.");
+    });
+    if (!response.ok) {
+        throw new Error(data.message || "API-Anfrage fehlgeschlagen.");
+    }
+    return data;
+}
+
+async function postJson(path, payload) {
+    return fetchJson(path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+}
 
 function isStudentDiscountActive() {
     return localStorage.getItem("campustech-student-discount") === "active";
@@ -487,10 +524,16 @@ function setActiveNav() {
     });
 }
 
+function productImageAlt(product) {
+    const name = product.name.toLowerCase();
+    const brand = product.brand.toLowerCase();
+    return name.startsWith(brand) ? product.name : `${product.brand} ${product.name}`;
+}
+
 function productCard(product) {
     return `
         <article class="product-card">
-            <img src="${product.image}" alt="${product.brand} ${product.name}" width="620" height="520" loading="lazy">
+            <img src="${product.image}" alt="${productImageAlt(product)}" width="620" height="520" loading="lazy">
             <div class="product-body">
                 <div class="meta-row">
                     <span>${product.brand}</span>
@@ -513,6 +556,17 @@ function productCard(product) {
 function renderShop() {
     const grid = document.querySelector("[data-product-grid]");
     if (!grid) return;
+
+    if (databaseErrorMessage) {
+        grid.innerHTML = `<p class="empty-state">${databaseErrorMessage}</p>`;
+        document.querySelector("[data-result-count]").textContent = "0 Produkte";
+        return;
+    }
+
+    if (keepServerRenderedShop) {
+        keepServerRenderedShop = false;
+        return;
+    }
 
     const search = document.querySelector("#searchInput").value.trim().toLowerCase();
     const sort = document.querySelector("#sortSelect").value;
@@ -556,7 +610,7 @@ function offerCard(bundle) {
                     ${bundle.highlights.map((item) => `<li>${item}</li>`).join("")}
                 </ul>
                 <div class="bundle-prices">
-                    <span>Einzelpreis <strong>${bundle.oldPrice}</strong></span>
+                    ${bundle.oldPrice ? `<span>Einzelpreis <strong>${bundle.oldPrice}</strong></span>` : ""}
                     <span>Bundlepreis ${priceInline(bundle)}</span>
                 </div>
                 <div class="product-actions">
@@ -582,7 +636,7 @@ function renderStudentDiscountPromo() {
                     <div>
                         <p class="eyebrow">Studentenrabatt aktiv</p>
                         <h2>10 % Rabatt sind aktiviert.</h2>
-                        <p>Alle Produkt- und Bundlepreise wurden automatisch neu berechnet.</p>
+                        <p>Alle Produkt- und Bundlepreise wurden automatisch neu berechnet. Für die Freigabe wird ein Studienausweis benötigt.</p>
                     </div>
                     <span class="student-discount-mark">🎓</span>
                 </div>
@@ -600,7 +654,7 @@ function renderStudentDiscountPromo() {
                 <div>
                     <p class="eyebrow">Studentenrabatt sichern</p>
                     <h2>Bist du Student oder Studentin?</h2>
-                    <p>Aktiviere jetzt deinen exklusiven Studentenrabatt und spare 10 % auf alle Produkte und Bundles.</p>
+                    <p>Aktiviere den Studentenrabatt und spare 10 %. Zur Bestätigung muss ein Studienausweis hochgeladen werden.</p>
                 </div>
                 <div class="student-discount-actions">
                     <button class="btn btn-dark" type="button" data-student-discount-accept>Ja, Studentenrabatt sichern</button>
@@ -718,6 +772,7 @@ function openPaymentModal({ amount, label }) {
     modal.querySelector("[data-payment-label]").textContent = label;
     modal.querySelector("[data-payment-amount]").textContent = formatMoney(amount);
     modal.querySelector("[data-payment-status]").textContent = "";
+    modal.dataset.paymentKind = label.includes("Student+") ? "membership" : "cart";
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("payment-open");
@@ -729,6 +784,21 @@ function closePaymentModal() {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("payment-open");
+}
+
+async function saveCheckout(method) {
+    const modal = ensurePaymentModal();
+    const orderType = modal.dataset.paymentKind || "cart";
+    const items = orderType === "membership"
+        ? [{ id: "student-plus", quantity: 1 }]
+        : cart.map((item) => ({ id: item.id, quantity: item.quantity }));
+
+    return postJson("orders.php", {
+        orderType,
+        paymentMethod: method,
+        studentDiscount: isStudentDiscountActive(),
+        items
+    });
 }
 
 function renderDetail() {
@@ -744,7 +814,7 @@ function renderDetail() {
                 <button class="gallery-nav gallery-prev" type="button" data-gallery-step="-1" aria-label="Vorheriges Bild">
                     <img src="images/abstract/arrow_left.svg" alt="" width="46" height="46">
                 </button>
-                <img class="detail-main-image" data-main-image src="${product.gallery[0]}" alt="${product.brand} ${product.name}" width="900" height="700">
+                <img class="detail-main-image" data-main-image src="${product.gallery[0]}" alt="${productImageAlt(product)}" width="900" height="700">
                 <button class="gallery-nav gallery-next" type="button" data-gallery-step="1" aria-label="Nächstes Bild">
                     <img src="images/abstract/arrow_right.svg" alt="" width="46" height="46">
                 </button>
@@ -821,7 +891,7 @@ function renderCompare() {
         <tr>
             <td>
                 <a class="compare-product" href="produktdetail.html?id=${product.id}">
-                    <img src="${product.image}" alt="${product.brand} ${product.name}" width="72" height="72">
+                    <img src="${product.image}" alt="${productImageAlt(product)}" width="72" height="72">
                     <strong>${product.brand} ${product.name}</strong>
                 </a>
             </td>
@@ -873,7 +943,7 @@ function renderCart() {
             const product = getProduct(item.id);
             return `
                 <article class="bag-item">
-                    <img src="${product.image}" alt="${product.brand} ${product.name}" width="76" height="76">
+                    <img src="${product.image}" alt="${productImageAlt(product)}" width="76" height="76">
                     <div>
                         <strong>${product.name}</strong>
                         <p class="${isStudentDiscountActive() ? "bag-price-discounted" : ""}">
@@ -923,7 +993,7 @@ function showToast(message) {
     showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
     const addButton = event.target.closest("[data-add]");
     const removeButton = event.target.closest("[data-remove]");
     const galleryButton = event.target.closest("[data-gallery-index]");
@@ -979,7 +1049,22 @@ document.addEventListener("click", (event) => {
     if (paymentConfirm) {
         const modal = ensurePaymentModal();
         const method = modal.querySelector("input[name='payment-method']:checked").value;
-        modal.querySelector("[data-payment-status]").textContent = `Zahlung mit ${method} simuliert.`;
+        const status = modal.querySelector("[data-payment-status]");
+        status.textContent = "Bestellung wird in der Datenbank gespeichert...";
+
+        try {
+            const result = await saveCheckout(method);
+            status.textContent = `Zahlung mit ${method} simuliert. Bestellung ${result.orderNumber} wurde gespeichert.`;
+
+            if (modal.dataset.paymentKind !== "membership") {
+                cart = [];
+                saveCart();
+                renderCart();
+            }
+        } catch (error) {
+            console.info("Bestellung konnte nicht gespeichert werden.", error);
+            status.textContent = `Zahlung mit ${method} simuliert. Datenbank nicht erreichbar, Bestellung wurde nicht gespeichert.`;
+        }
     }
 
     if (categoryButton) {
@@ -1027,6 +1112,24 @@ if (navToggle) {
         navToggle.setAttribute("aria-expanded", String(isOpen));
     });
 }
+
+document.querySelectorAll("[data-contact-form]").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const status = form.querySelector("[data-contact-status]");
+        const payload = Object.fromEntries(new FormData(form).entries());
+        status.textContent = "Anfrage wird gespeichert...";
+
+        try {
+            const result = await postJson("contact.php", payload);
+            status.textContent = `Danke! Deine Anfrage #${result.requestId} wurde gespeichert.`;
+            form.reset();
+        } catch (error) {
+            console.info("Kontaktanfrage konnte nicht gespeichert werden.", error);
+            status.textContent = "Die Datenbank ist gerade nicht erreichbar. Bitte später erneut senden.";
+        }
+    });
+});
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
